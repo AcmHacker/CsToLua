@@ -374,8 +374,15 @@
 
 		[DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)]
 		public static extern void lua_pushnumber(IntPtr luaState, double number);
+//这里是因为-1的问题
+#if UNITY_IPHONE
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void lua_pushinteger(IntPtr luaState, long number);
+#else
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern void lua_pushinteger(IntPtr luaState, int number);
+#endif //UNITY_IPHONE
+
 		[DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)]
 		public static extern void lua_pushboolean(IntPtr luaState, bool value);
 		[DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)]
